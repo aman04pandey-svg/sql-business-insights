@@ -1,12 +1,30 @@
 # SQL Business Insights
 
-A SQL-based e-commerce analytics project focused on answering real-world business questions using PostgreSQL.
+A business-focused e-commerce analytics project built using PostgreSQL and SQL.
 
-The project analyzes business performance across revenue, customers, products, payments, deliveries, and marketing attribution.
+The project focuses on converting raw e-commerce data into meaningful business insights across revenue, customers, products, payments, deliveries, returns, and marketing attribution.
+
+---
+
+## Executive Summary
+
+| Area | Analysis |
+|---|---|
+| Business Performance | Daily revenue, orders, AOV and payment metrics |
+| Customer Analytics | Cohort retention, LTV and repeat purchase behavior |
+| Product Analytics | Product revenue, refunds, returns and category performance |
+| Funnel Analytics | Conversion performance by acquisition channel |
+| Payment Analytics | Payment failures and error analysis |
+| Operations Analytics | Delivery SLA performance by carrier and shipping method |
+| Marketing Analytics | First-touch vs last-touch attribution |
+
+---
 
 ## Business Objectives
 
-The goal of this project is to convert raw e-commerce data into actionable business insights for different business stakeholders such as:
+The objective of this project is to answer practical business questions using SQL and convert analytical results into actionable insights.
+
+The analysis is designed for stakeholders such as:
 
 - Business & Finance Teams
 - Product Teams
@@ -15,79 +33,166 @@ The goal of this project is to convert raw e-commerce data into actionable busin
 - Operations Teams
 - CRM & Marketing Teams
 
+---
+
 ## Key Business Questions
 
 ### 1. Daily Business Summary
-Analyzes daily business performance using key revenue and order metrics.
+
+How is the business performing today compared with the previous day and the same day last week?
+
+[View SQL Query](queries/01_daily_business_summary.sql)
 
 ### 2. Monthly Signup Cohort Retention
-Analyzes customer retention behavior across signup cohorts.
+
+How well do different customer signup cohorts retain over time?
+
+[View SQL Query](queries/02_monthly_signup_cohort_retention.sql)
 
 ### 3. Funnel Conversion by Acquisition Channel
-Measures customer movement through the funnel and compares conversion across acquisition channels.
+
+Which acquisition channels generate the strongest movement through the product funnel?
+
+[View SQL Query](queries/03_funnel_conversion_by_acquisition.sql)
 
 ### 4. Top Products by Net Revenue
-Identifies products generating the highest net revenue after accounting for refunds and returns.
+
+Which products generate the highest net revenue after accounting for refunds?
+
+[View SQL Query](queries/04_top_products_by_net_revenue.sql)
 
 ### 5. Category Health: Purchases → Returns
-Compares category-level revenue, sales volume, and return rates to identify healthy and problematic categories.
+
+Which categories generate the most revenue and which have relatively high return rates?
+
+[View SQL Query](queries/05_category_health.sql)
 
 ### 6. Payment Failure Analysis
-Analyzes payment attempts and failures by payment method and identifies the top error reason for each method.
+
+Which payment methods experience the highest failure rates and what are the major failure reasons?
+
+[View SQL Query](queries/06_payment_failure_analysis.sql)
 
 ### 7. Delivery SLA Breach
-Measures delivery performance by carrier and shipping method against the 5-day SLA.
+
+Which carriers and shipping methods are failing to meet the 5-day delivery SLA?
+
+[View SQL Query](queries/07_delivery_sla_breach.sql)
 
 ### 8. Customer LTV & Revenue Bucket Share
-Segments customers into LTV buckets and measures each bucket's contribution to total revenue.
+
+Which customer LTV segments contribute the largest share of total revenue?
+
+[View SQL Query](queries/08_customer_ltv_bucket.sql)
 
 ### 9. Repeat Purchase Interval
-Analyzes how long customers take to make their next purchase using repeat-order intervals.
+
+How long do customers typically take to make their next purchase?
+
+[View SQL Query](queries/09_repeat_purchase_interval.sql)
 
 ### 10. First-Touch vs Last-Touch Attribution
-Compares first-touch and last-touch marketing attribution to understand how different channels contribute to revenue.
+
+How does channel performance change when comparing first-touch and last-touch attribution?
+
+[View SQL Query](queries/10_first_last_touch_attribution.sql)
+
+---
 
 ## SQL Concepts Used
 
-- JOINs
-- LEFT JOINs
+This project demonstrates practical SQL techniques used in business analytics:
+
+- SELECT and filtering
+- INNER JOIN
+- LEFT JOIN
 - CTEs
 - GROUP BY
-- CASE WHEN
+- HAVING
 - Aggregate Functions
+- CASE WHEN
+- Conditional Aggregation
 - Window Functions
+- PARTITION BY
 - ROW_NUMBER()
+- RANK()
 - LEAD()
+- LAG()
 - PERCENTILE_CONT()
-- NULLIF()
 - COALESCE()
+- NULLIF()
 - UNION ALL
 - Date Arithmetic
-- Conditional Aggregation
-- Revenue & Rate Calculations
-- Top-N per Group Analysis
+- Revenue Calculations
+- Rate and Percentage Calculations
+- Top-N Analysis
 - Customer Segmentation
+- Cohort Analysis
+- Funnel Analysis
 - Marketing Attribution
+
+---
 
 ## Business Thinking
 
-The queries are designed not only to retrieve data, but to answer business questions and support decision-making.
+The main objective of this project is not only to write SQL queries, but to understand the business problem behind the data.
 
-Examples:
+For every analysis, the approach focuses on:
 
-- Which products generate the most net revenue?
-- Which categories have high return rates?
-- Which payment methods fail most frequently?
-- What are the major payment failure reasons?
-- Which carriers are missing the 5-day delivery SLA?
-- Which customer segments contribute the most revenue?
-- How frequently do customers make repeat purchases?
-- Does first-touch or last-touch attribution give a different view of channel performance?
+1. Understanding the business question
+2. Identifying the correct data grain
+3. Understanding table relationships
+4. Choosing the correct metric definition
+5. Avoiding duplicate counting caused by joins
+6. Validating the analytical result
+7. Converting SQL output into a business insight
+8. Identifying the next question that should be investigated
+
+---
+
+## Data Quality & Validation
+
+Data validation is an important part of the project.
+
+Examples of validation performed include:
+
+- Cross-checking revenue against source transaction data
+- Validating percentage calculations
+- Checking for duplicate counting caused by joins
+- Handling NULL values using `COALESCE`
+- Preventing division-by-zero using `NULLIF`
+- Validating refund allocation against total refund amounts
+- Checking whether calculated rates remain within expected ranges
+- Using the correct payment-status field for paid-order analysis
+
+For example, order-level refunds were proportionally allocated to products to avoid double-counting when an order contained multiple products.
+
+---
+
+## Key Analytical Learning
+
+This project helped strengthen the ability to think beyond SQL syntax.
+
+The key learning areas include:
+
+- Understanding data grain
+- Understanding primary and foreign-key relationships
+- Identifying how joins can multiply rows
+- Defining business metrics correctly
+- Building reusable CTE-based analyses
+- Using window functions for analytical problems
+- Validating results before presenting them
+- Translating SQL results into business recommendations
+
+---
 
 ## Project Structure
 
 ```text
 sql-business-insights/
+│
+├── notes/
+│   └── ecom_schema.md
 │
 ├── queries/
 │   ├── 01_daily_business_summary.sql
@@ -101,58 +206,35 @@ sql-business-insights/
 │   ├── 09_repeat_purchase_interval.sql
 │   └── 10_first_last_touch_attribution.sql
 │
-└── README.md
+└──README.md
+``` 
 
-## SQL Concepts Used
+## Documentation
 
-- CTEs (Common Table Expressions)
-- JOINs and LEFT JOINs
-- GROUP BY and aggregate functions
-- CASE WHEN for business segmentation
-- Window Functions
-- ROW_NUMBER() for top-N analysis
-- LEAD() for repeat purchase analysis
-- PERCENTILE_CONT() for median and P90 analysis
-- Conditional aggregation
-- NULL handling with COALESCE and NULLIF
-- Revenue and rate calculations
+### Schema Documentation
 
-## Business Insights Covered
+The `notes/ecom_schema.md` file documents the main e-commerce tables, relationships, important columns and data observations.
 
-This project answers practical e-commerce business questions such as:
+[View Schema Notes](notes/ecom_schema.md)
 
-- What is the overall business performance?
-- Which products generate the highest net revenue after refunds?
-- Which product categories have the highest return rates?
-- Which payment methods have the highest failure rates?
-- Which carriers and shipping methods are missing the 5-day delivery SLA?
-- Which customer segments contribute the most revenue?
-- How long does it take customers to make a repeat purchase?
-- How does first-touch vs last-touch attribution change channel performance?
+### Business Interpretations
 
-## Validation & Data Quality Checks
+The `INTERPRETATIONS.md` file explains the business purpose, key findings and next analytical questions for each SQL analysis.
 
-Each analysis includes sanity checks where applicable, such as:
+[View Business Interpretations](INTERPRETATIONS.md)
 
-- Revenue totals are cross-checked against source transaction data.
-- Rates and percentages are validated to remain within expected ranges.
-- Duplicate counting is avoided by aggregating data before joining CTEs.
-- NULL and zero-division cases are handled using COALESCE and NULLIF.
-- Delivery analysis excludes shipments that are still in transit.
 
-## Tools
+## Tools & Technologies
 
 - PostgreSQL
 - SQL
 - Metabase
 - GitHub
 
+---
+
 ## Author
 
-Aman Pandey
-
-
-
-
+**Aman Pandey**
 
 
