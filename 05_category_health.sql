@@ -60,7 +60,7 @@ WITH category_sales AS (
     JOIN ecom.categories c
         ON p.category_id = c.category_id
 
-    WHERE o.status = 'paid'
+    WHERE LOWER(o.payment_status) = 'paid'
 
     GROUP BY
         c.category_name
