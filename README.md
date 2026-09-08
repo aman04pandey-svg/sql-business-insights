@@ -35,6 +35,35 @@ The analysis is designed for stakeholders such as:
 
 ---
 
+## Key Business Insights
+
+The analysis generated several actionable business findings:
+
+- **Business Performance:** Revenue on June 14, 2026 declined by approximately 74% vs the previous day and 79% vs the same weekday in the previous week, driven by a sharp decline in order volume and lower AOV.
+
+
+- **Customer Retention:** The March signup cohort showed the strongest observed retention, while later cohorts showed weaker observed retention. Later cohorts were treated carefully because some periods were not yet fully mature.
+
+
+- **Funnel Performance:** Email had the highest session-to-purchase conversion at approximately 29%, while other acquisition channels were around 28%. The checkout-to-purchase stage showed the largest lower-funnel opportunity.
+
+
+- **Product & Category Performance:** Smartwatch generated the highest category revenue at approximately ₹59.7M, while Shoes had the highest observed return rate at 2.91%.
+
+
+- **Payment Performance:** UPI had the highest payment failure rate at 5.5%, while card had the highest absolute number of failures due to its larger transaction volume.
+
+
+- **Delivery Operations:** EcomExpress express showed the highest observed SLA breach rate at approximately 21%, indicating a potential carrier/service-level issue requiring deeper lane and region analysis.
+
+
+- **Customer LTV:** Customers in the ₹20,000+ LTV segment represented approximately 40% of customers but contributed 88.38% of total revenue, showing strong revenue concentration among high-value customers.
+
+
+- **Marketing Attribution:** Organic remained the largest first-touch and last-touch channel, while email gained share under last-touch attribution, suggesting a stronger role closer to conversion.
+
+---
+
 ## Key Business Questions
 
 ### 1. Daily Business Summary
